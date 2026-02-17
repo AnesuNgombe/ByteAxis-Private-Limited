@@ -50,13 +50,6 @@ const Home = () => {
     { label: 'Launch velocity', Icon: RocketLaunchIcon, className: 'bottom-16 right-16', delay: 0.9 },
   ];
 
-  const consoleIcons = [
-    { label: 'AI Ops', Icon: SparklesIcon, className: 'top-6 right-6', delay: 0 },
-    { label: 'Pipeline', Icon: CpuChipIcon, className: 'top-24 right-12', delay: 0.2 },
-    { label: 'Revenue', Icon: ChartBarIcon, className: 'bottom-2 left-6', delay: 0.4 },
-    { label: 'Launch', Icon: RocketLaunchIcon, className: 'bottom-6 right-8', delay: 0.6 },
-  ];
-
   const projectGalleries = [
     {
       title: 'ByteAxis Client Portal',

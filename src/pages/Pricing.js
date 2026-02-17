@@ -5,7 +5,6 @@ import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import { CheckIcon, SparklesIcon, RocketLaunchIcon, BuildingStorefrontIcon, CpuChipIcon, ServerIcon, BriefcaseIcon, MegaphoneIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const Pricing = () => {
-  const [billingCycle, setBillingCycle] = useState('one-time');
   const [expandedFaq, setExpandedFaq] = useState(null);
 
   const websitePlans = [
