@@ -1,0 +1,15 @@
+{
+  "framework": "create-react-app",
+  "installCommand": "npm install",
+  "buildCommand": "CI=false npm run build",
+  "outputDirectory": "build",
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

@@ -168,7 +168,7 @@ const AdminDashboard = () => {
                     <span className="font-semibold text-ink">{item.projectName || 'Custom Project'}</span>
                     <span className="text-slate-500">{new Date(item._createdAt).toLocaleDateString()}</span>
                   </div>
-                  <p className="text-sm text-slate-600 mt-2">
+                  <p className="text-sm text-slate-600 mt-2 break-all">
                     {item.client?.name || 'Client'} • {item.client?.email || 'No email'}
                   </p>
                   <div className="flex items-center justify-between text-sm text-slate-600 mt-2">
@@ -192,7 +192,7 @@ const AdminDashboard = () => {
                     <span className="font-semibold text-ink">{item.projectName || 'Project'}</span>
                     <span className="text-slate-500">{new Date(item._createdAt).toLocaleDateString()}</span>
                   </div>
-                  <p className="text-sm text-slate-600 mt-2">{item.email}</p>
+                  <p className="text-sm text-slate-600 mt-2 break-all">{item.email}</p>
                   <div className="flex items-center justify-between text-sm text-slate-600 mt-2">
                     <span>Status: {item.status}</span>
                     <span className="font-semibold text-primary-700">${(item.amount || 0).toFixed(2)} {item.currency}</span>

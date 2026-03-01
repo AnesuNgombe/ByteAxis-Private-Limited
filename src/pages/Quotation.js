@@ -4,6 +4,7 @@ import { generateAiSummary } from '../utils/aiClient';
 import { sanityWriteClient } from '../utils/sanityClient';
 import { useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
+import { submitLead } from '../utils/submissionApi';
 
 const VAT_RATE = 0.15;
 
@@ -63,10 +64,6 @@ const Quotation = () => {
   };
 
   const handleSubmitRequest = async () => {
-    if (!sanityWriteClient) {
-      setRequestError('Backend connection is not configured yet. Please contact ByteAxis.');
-      return;
-    }
     if (!selectedItems.length) {
       setRequestError('Select at least one service before submitting.');
       return;
@@ -74,29 +71,53 @@ const Quotation = () => {
 
     setRequestLoading(true);
     setRequestError('');
+    setRequestSuccess(false);
+
+    const requestDocument = {
+      _type: 'quotationRequest',
+      projectName: projectName || 'Custom Project',
+      companyName,
+      timeline,
+      notes,
+      subtotal,
+      vat,
+      total,
+      status: 'new',
+      client: {
+        clerkUserId: user?.id || '',
+        name: user?.fullName || '',
+        email: user?.primaryEmailAddress?.emailAddress || '',
+      },
+      lineItems: selectedItems.map((item) => ({
+        label: item.label,
+        category: item.category,
+        price: item.price,
+      })),
+      createdAt: new Date().toISOString(),
+    };
+
     try {
-      await sanityWriteClient.create({
-        _type: 'quotationRequest',
-        projectName: projectName || 'Custom Project',
-        companyName,
-        timeline,
-        notes,
-        subtotal,
-        vat,
-        total,
-        status: 'new',
-        client: {
-          clerkUserId: user?.id || '',
-          name: user?.fullName || '',
-          email: user?.primaryEmailAddress?.emailAddress || '',
-        },
-        lineItems: selectedItems.map((item) => ({
-          label: item.label,
-          category: item.category,
-          price: item.price,
-        })),
-        createdAt: new Date().toISOString(),
-      });
+      const results = await Promise.allSettled([
+        submitLead({
+          type: 'quotation',
+          projectName: requestDocument.projectName,
+          companyName: requestDocument.companyName,
+          timeline: requestDocument.timeline,
+          notes: requestDocument.notes,
+          subtotal: requestDocument.subtotal,
+          vat: requestDocument.vat,
+          total: requestDocument.total,
+          client: requestDocument.client,
+          lineItems: requestDocument.lineItems,
+        }),
+        sanityWriteClient ? sanityWriteClient.create(requestDocument) : Promise.resolve(),
+      ]);
+
+      const emailResult = results[0];
+      if (emailResult.status === 'rejected') {
+        throw emailResult.reason;
+      }
+
       setRequestSuccess(true);
     } catch (err) {
       setRequestError('Failed to submit request. Please try again.');
@@ -233,8 +254,8 @@ const Quotation = () => {
               <div className="mt-6 space-y-3">
                 {selectedItems.length ? selectedItems.map((item) => (
                   <div key={item.id} className="flex justify-between text-sm border-b border-slate-100 pb-2">
-                    <span className="text-slate-700">{item.label}</span>
-                    <span className="font-semibold text-ink">${item.price}</span>
+                    <span className="text-slate-700 pr-3 break-words">{item.label}</span>
+                    <span className="font-semibold text-ink shrink-0">${item.price}</span>
                   </div>
                 )) : (
                   <p className="text-slate-500 text-sm">Select services to build your quotation.</p>

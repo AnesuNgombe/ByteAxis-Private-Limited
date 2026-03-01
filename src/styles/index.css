@@ -8,6 +8,9 @@
   * {
     @apply border-slate-200;
   }
+  html, body, #root {
+    @apply w-full overflow-x-hidden;
+  }
   body {
     @apply bg-sand text-slate-800 font-body antialiased;
   }

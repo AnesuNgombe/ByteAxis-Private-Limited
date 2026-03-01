@@ -187,11 +187,11 @@ const Payment = () => {
               <div className="mt-6 space-y-2 text-sm text-sand/80">
                 <div className="flex items-center justify-between">
                   <span>Project</span>
-                  <span className="font-semibold text-sand">{form.projectName || 'Custom Project'}</span>
+                  <span className="font-semibold text-sand text-right break-words pl-3">{form.projectName || 'Custom Project'}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Company</span>
-                  <span className="font-semibold text-sand">{form.companyName || 'Client'}</span>
+                  <span className="font-semibold text-sand text-right break-words pl-3">{form.companyName || 'Client'}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span>Amount (USD)</span>

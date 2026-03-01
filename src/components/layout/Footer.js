@@ -47,7 +47,7 @@ const Footer = () => {
               <span className="text-xl font-display text-primary-600">ByteAxis</span>
             </div>
             <p className="text-sand/70 leading-relaxed">
-              Software, systems, and business-launch services built for founders and growing teams.
+              Software, systems, company registration, and business-launch services built for founders and growing teams.
             </p>
           </div>
 
@@ -69,8 +69,8 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-semibold tracking-widest uppercase text-sand/60 mb-4">Contact</h4>
             <ul className="space-y-3 text-sand/80">
-              <li>VOIP: <a href={getTelLink(COMPANY.voip)} className="hover:text-white">{COMPANY.voip}</a></li>
-              <li>WhatsApp: <a href={getWhatsAppLink()} className="hover:text-white">{COMPANY.whatsapp}</a></li>
+              <li className="break-all">VOIP: <a href={getTelLink(COMPANY.voip)} className="hover:text-white">{COMPANY.voip}</a></li>
+              <li className="break-all">WhatsApp: <a href={getWhatsAppLink()} className="hover:text-white">{COMPANY.whatsapp}</a></li>
             </ul>
           </div>
 

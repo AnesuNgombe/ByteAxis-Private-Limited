@@ -25,10 +25,10 @@ const Navbar = () => {
       transition={{ duration: 0.5 }}
       className="bg-white/90 backdrop-blur-xl shadow-lg sticky top-0 z-50 print-hidden"
     >
-      <div className="bg-ink text-sand text-xs">
+      <div className="bg-ink text-sand text-[11px] sm:text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <span className="tracking-widest uppercase">Tech + Business Launch Studio</span>
-          <div className="flex flex-wrap items-center gap-4">
+          <span className="tracking-[0.18em] sm:tracking-widest uppercase">Tech + Business Launch Studio</span>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <a href={getTelLink(COMPANY.voip)} className="hover:text-white">VOIP {COMPANY.voip}</a>
             <a href={getWhatsAppLink()} className="hover:text-white">WhatsApp {COMPANY.whatsapp}</a>
           </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.1 }}
                 transition={{ type: "spring", stiffness: 300 }}
               />
-              <span className="ml-3 text-2xl font-display text-primary-600">ByteAxis</span>
+              <span className="ml-3 text-2xl font-display text-primary-600 hidden sm:inline">ByteAxis</span>
             </Link>
           </div>
 
@@ -76,7 +76,8 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-slate-700 hover:text-primary-600"
+              className="text-slate-700 hover:text-primary-600 p-1"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               {isOpen ? (
                 <XMarkIcon className="h-6 w-6" />

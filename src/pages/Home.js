@@ -14,6 +14,7 @@ import {
   SparklesIcon,
 } from '@heroicons/react/24/solid';
 import { sanityClient, sanityWriteClient } from '../utils/sanityClient';
+import { submitLead } from '../utils/submissionApi';
 
 const Home = () => {
   const imageBase = `${process.env.PUBLIC_URL}/img`;
@@ -198,23 +199,33 @@ const Home = () => {
 
   const handleNewsletterSubmit = async (event) => {
     event.preventDefault();
-    if (!sanityWriteClient) {
-      setNewsletterStatus({ loading: false, error: 'Newsletter is not configured yet.', success: '' });
-      return;
-    }
     if (!newsletterEmail) {
       setNewsletterStatus({ loading: false, error: 'Please enter an email address.', success: '' });
       return;
     }
     setNewsletterStatus({ loading: true, error: '', success: '' });
     try {
-      await sanityWriteClient.create({
-        _type: 'newsletterSignup',
+      await submitLead({
+        type: 'newsletter',
         email: newsletterEmail,
         interests: newsletterInterest,
         source: 'home',
-        createdAt: new Date().toISOString(),
       });
+
+      if (sanityWriteClient) {
+        try {
+          await sanityWriteClient.create({
+            _type: 'newsletterSignup',
+            email: newsletterEmail,
+            interests: newsletterInterest,
+            source: 'home',
+            createdAt: new Date().toISOString(),
+          });
+        } catch (error) {
+          // Email delivery is the primary submission channel.
+        }
+      }
+
       setNewsletterEmail('');
       setNewsletterInterest('');
       setNewsletterStatus({ loading: false, error: '', success: 'Thanks for subscribing! We will be in touch.' });
@@ -263,7 +274,7 @@ const Home = () => {
               </h1>
               <p className="text-lg text-white/80 mt-6 max-w-xl">
                 We build software, web platforms, mobile apps, and internal systems that help founders launch faster and scale
-                smarter. From idea to market, we align strategy, compliance, marketing, and growth.
+                smarter. From idea to market, we align strategy, company registration, compliance, marketing, and growth.
               </p>
               <div className="flex flex-wrap gap-3 mt-6">
                 {heroHighlights.map((item, index) => (
@@ -377,13 +388,13 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <p className="section-kicker">Business Setup</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-ink mt-3">Launch your business legally and confidently</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mt-3">Launch your company legally and confidently</h2>
             <p className="text-slate-600 mt-4">
               We handle business registration, compliance papers, tax readiness, and market positioning. Our consultants map your
               idea into a viable plan with timelines, costs, and growth channels.
             </p>
             <div className="mt-6 grid gap-4">
-              <div className="p-4 rounded-2xl bg-sand border border-slate-200">Business registration packs</div>
+              <div className="p-4 rounded-2xl bg-sand border border-slate-200">Company registration and incorporation packs</div>
               <div className="p-4 rounded-2xl bg-sand border border-slate-200">Compliance & opening documents</div>
               <div className="p-4 rounded-2xl bg-sand border border-slate-200">Branding & social media setup</div>
               <div className="p-4 rounded-2xl bg-sand border border-slate-200">Marketing campaigns + ads</div>

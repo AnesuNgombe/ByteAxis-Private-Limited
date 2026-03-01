@@ -30,7 +30,7 @@ const RequireAuth = ({ children }) => {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-sand">
+      <div className="min-h-screen bg-sand overflow-x-hidden">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

@@ -57,7 +57,7 @@ const Services = () => {
       accent: "from-ember/20 to-ember/5"
     },
     {
-      title: "Business Registration & Setup",
+      title: "Company Registration & Business Setup",
       description: "We handle paperwork, compliance, and operational readiness.",
       features: ["Registration docs", "Opening papers", "Operational checklist", "Business ideas coaching"],
       price: "Starter packs from $150",
@@ -146,7 +146,7 @@ const Services = () => {
           })}
         </div>
 
-        <div className="mt-20 bg-white rounded-3xl shadow-deep p-10">
+        <div className="mt-20 bg-white rounded-3xl shadow-deep p-6 sm:p-8 lg:p-10">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div>
               <p className="section-kicker">Process</p>

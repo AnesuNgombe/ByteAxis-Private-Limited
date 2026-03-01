@@ -116,8 +116,8 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
           <p className="section-kicker">Pricing</p>
-          <h1 className="text-5xl md:text-6xl font-bold text-ink mt-4 mb-6">Simple, transparent pricing</h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <h1 className="text-4xl md:text-6xl font-bold text-ink mt-4 mb-6">Simple, transparent pricing</h1>
+          <p className="text-base sm:text-xl text-slate-600 max-w-3xl mx-auto">
             Choose the perfect plan for your business. All packages include professional design, development, and support.
           </p>
         </motion.div>
@@ -129,7 +129,7 @@ const Pricing = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className={`relative bg-white rounded-3xl shadow-deep p-8 hover:shadow-xl transition-all duration-300 ${plan.popular ? 'ring-4 ring-primary-500 scale-105' : ''}`}
+              className={`relative bg-white rounded-3xl shadow-deep p-8 hover:shadow-xl transition-all duration-300 ${plan.popular ? 'ring-2 sm:ring-4 ring-primary-500 md:scale-105' : ''}`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-600 text-white px-6 py-1 rounded-full text-sm font-semibold">
@@ -144,7 +144,7 @@ const Pricing = () => {
               </div>
               <p className="text-slate-600 mb-6">{plan.description}</p>
               <div className="mb-6">
-                <span className="text-5xl font-bold text-ink">${plan.price}</span>
+                <span className="text-4xl sm:text-5xl font-bold text-ink">${plan.price}</span>
                 <span className="text-slate-500 ml-2">one-time</span>
               </div>
               <ul className="space-y-3 mb-8">
@@ -175,7 +175,7 @@ const Pricing = () => {
               <CpuChipIcon className="h-5 w-5" />
               <span className="font-semibold">Custom Web Applications</span>
             </div>
-            <h2 className="text-4xl font-bold text-ink mb-4">Stage-Based Development</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">Stage-Based Development</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               For complex web apps, SaaS platforms, and internal systems. Pay as you progress through each stage.
             </p>
@@ -200,7 +200,7 @@ const Pricing = () => {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-ink mb-4">Add-Ons & Services</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">Add-Ons & Services</h2>
             <p className="text-lg text-slate-600">Everything you need to launch and grow your business</p>
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
@@ -234,7 +234,7 @@ const Pricing = () => {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mb-20">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-ink mb-4">Frequently Asked Questions</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">Frequently Asked Questions</h2>
           </div>
           <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, i) => (
@@ -269,25 +269,25 @@ const Pricing = () => {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1 }} className="bg-gradient-to-br from-ink via-primary-900 to-purple-900 text-white rounded-3xl p-12 text-center shadow-2xl">
-          <h2 className="text-4xl font-bold mb-4">Ready to start your project?</h2>
-          <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 1 }} className="bg-gradient-to-br from-ink via-primary-900 to-purple-900 text-white rounded-3xl p-6 sm:p-8 lg:p-12 text-center shadow-2xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to start your project?</h2>
+          <p className="text-white/80 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
             Get a detailed quotation with VAT breakdown in minutes. No commitment required.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <SignedIn>
-              <Link to="/quotation" className="btn-secondary inline-flex items-center gap-2 text-lg px-8 py-4">
+              <Link to="/quotation" className="btn-secondary inline-flex items-center justify-center gap-2 text-lg px-8 py-4 w-full sm:w-auto">
                 <SparklesIcon className="h-5 w-5" />
                 Generate Quotation
               </Link>
             </SignedIn>
             <SignedOut>
-              <Link to="/auth" className="btn-secondary inline-flex items-center gap-2 text-lg px-8 py-4">
+              <Link to="/auth" className="btn-secondary inline-flex items-center justify-center gap-2 text-lg px-8 py-4 w-full sm:w-auto">
                 <SparklesIcon className="h-5 w-5" />
                 Sign In to Start
               </Link>
             </SignedOut>
-            <Link to="/contact" className="btn-outline border-2 border-white/30 text-white hover:bg-white/10 inline-flex text-lg px-8 py-4">
+            <Link to="/contact" className="btn-outline border-2 border-white/30 text-white hover:bg-white/10 inline-flex items-center justify-center text-lg px-8 py-4 w-full sm:w-auto">
               Talk to Our Team
             </Link>
           </div>
